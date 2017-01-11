@@ -1,0 +1,23 @@
+CREATE TABLE relocations (
+  id serial PRIMARY KEY,
+  raw_gps_id integer REFERENCES raw_gps(id),
+  animal_id integer REFERENCES animals(id),
+  device_id integer REFERENCES devices(id),
+  acq_time_utc timestamp with time zone,
+  acq_time_lcl timestamp with time zone,
+  latitude numeric,
+  longitude numeric,
+  geom geometry(Point, 4326),
+  altitude numeric,
+  easting numeric,
+  northing numeric,
+  activity numeric,
+  temperature numeric,
+  hdop numeric,
+  pdop numeric,
+  n_stats integer,
+  fixtype varchar(10),
+  gps_volts real,
+  created_at timestamp with time zone DEFAULT now(),
+  updated_at timestamp with time zone DEFAULT now()
+);
