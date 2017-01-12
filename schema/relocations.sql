@@ -9,7 +9,7 @@ CREATE TABLE relocations (
   longitude numeric,
   geom geometry(Point, 4326),
   altitude numeric,
-  validity_code integer REFERENCES validity_codes(code),
+  validity_code integer REFERENCES validity_codes(code) DEFAULT 1,
   easting numeric,
   northing numeric,
   utm_srid integer,
