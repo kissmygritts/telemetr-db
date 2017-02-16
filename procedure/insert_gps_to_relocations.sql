@@ -1,6 +1,16 @@
--- insert gps into relocations where row is between a deployment and
--- not in relocations.gps_id. This should only insert new relocations.
+/* insert gps into relocations where row is between inservice - outservice and not in relocations.gps_id. This should only insert new relocations. */
+
 -- TODO: this needs to be added to the import function for gps data
+
+/* CTE: common table expression acts as a subquery to select a concatenated
+psuedo index that can be checked so that existing records aren't reentered */
+WITH sq AS (
+  SELECT
+    gps.serial_num || relocations.acq_time_lcl AS jnr
+  FROM gps
+    INNER JOIN relocations ON gps.id = relocations.gps_id
+)
+
 INSERT INTO relocations (
   gps_id,
   device_id,
@@ -28,8 +38,8 @@ FROM deployments, devices, gps
 WHERE
   gps.serial_num = devices.serial_num AND
   devices.id = deployments.device_id AND
-  gps.id NOT IN (
-    SELECT gps_id FROM relocations
+  gps.serial_num || gps.acq_time_lcl NOT IN (
+    SELECT jnr FROM sq
   ) AND
   (
     (gps.acq_time_lcl >= deployments.inservice AND
