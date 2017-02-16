@@ -12,13 +12,6 @@ RETURNS trigger AS
 $BODY$
 BEGIN
 
-WITH sq AS (
-  SELECT
-    gps.serial_num || relocations.acq_time_lcl AS jnr
-  FROM gps
-    INNER JOIN relocations ON gps.id = relocations.gps_id
-)
-
 INSERT INTO relocations (
   gps_id,
   device_id,
@@ -32,28 +25,32 @@ INSERT INTO relocations (
   temperature
 )
 SELECT
-  NEW.id AS gps_id,
+  gps.id AS gps_id,
   deployments.device_id,
   deployments.animal_id,
-  NEW.acq_time_utc,
-  NEW.acq_time_lcl,
-  NEW.longitude,
-  NEW.latitude,
-  NEW.altitude,
-  NEW.activity,
-  NEW.temperature
-FROM deployments, devices
+  gps.acq_time_utc,
+  gps.acq_time_lcl,
+  gps.longitude,
+  gps.latitude,
+  gps.altitude,
+  gps.activity,
+  gps.temperature
+FROM deployments, devices, gps
 WHERE
-  NEW.serial_num = devices.serial_num AND
+  gps.serial_num = devices.serial_num AND
   devices.id = deployments.device_id AND
   gps.serial_num || gps.acq_time_lcl NOT IN (
-    SELECT jnr FROM sq
+    -- checking rows don't already exist in relocations
+    SELECT
+      gps.serial_num || relocations.acq_time_lcl
+    FROM gps
+      INNER JOIN relocations ON gps.id = relocations.gps_id
   ) AND
   (
-    (NEW.acq_time_lcl >= deployments.inservice AND
-     NEW.acq_time_lcl <= deployments.outservice)
-    OR
-    (NEW.acq_time_lcl >= deployments.inservice AND
+    (gps.acq_time_lcl >= deployments.inservice AND
+     gps.acq_time_lcl <= deployments.outservice)
+     OR
+    (gps.acq_time_lcl >= deployments.inservice AND
      deployments.outservice IS NULL)
   );
 
