@@ -1,6 +1,6 @@
 CREATE TABLE relocations (
   id serial PRIMARY KEY,
-  raw_gps_id integer REFERENCES raw_gps(id),
+  gps_id integer REFERENCES gps(id),
   animal_id integer REFERENCES animals(id),
   device_id integer REFERENCES devices(id),
   acq_time_utc timestamp with time zone,
@@ -15,11 +15,8 @@ CREATE TABLE relocations (
   utm_srid integer,
   activity numeric,
   temperature numeric,
-  hdop numeric,
-  pdop numeric,
-  n_stats integer,
-  fixtype varchar(10),
-  gps_volts real,
   created_at timestamp with time zone DEFAULT now(),
   updated_at timestamp with time zone DEFAULT now()
 );
+
+COMMENT ON TABLE relocations IS 'GPS data that has been checked agains inservice and outservice dates and includes the animal_id.';

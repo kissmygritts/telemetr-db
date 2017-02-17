@@ -8,3 +8,5 @@ CREATE TABLE deployments (
   updated_at timestamp with time zone default now(),
   UNIQUE (animal_id, device_id)
 );
+
+COMMENT ON TABLE deployments IS 'Animal-device association for checking inservice and outservice dates.';

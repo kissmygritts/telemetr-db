@@ -1,4 +1,4 @@
-CREATE TABLE raw_gps (
+CREATE TABLE gps (
   id serial PRIMARY KEY,
   serial_num varchar(50) REFERENCES devices(serial_num),
   acq_time_utc timestamp with time zone,
@@ -18,3 +18,5 @@ CREATE TABLE raw_gps (
   created_at timestamp with time zone DEFAULT now(),
   updated_at timestamp with time zone DEFAULT now()
 );
+
+COMMENT ON TABLE gps IS 'Table of raw gps data.';

@@ -1,3 +1,5 @@
+-- captures isn't being used anymore (2017-02-16). This overcomplicates the process.
+
 CREATE TABLE captures (
   id serial PRIMARY KEY,
   perm_id varchar(20),
