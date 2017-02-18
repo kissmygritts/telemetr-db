@@ -15,3 +15,16 @@ END;
 $BODY$
 LANGUAGE plpgsql VOLATILE
 COST 100;
+
+COMMENT ON FUNCTION create_geom() IS 'Creates a geometry field with latlong SRID = 4326';
+
+CREATE TRIGGER create_geom
+  AFTER INSERT
+  ON relocations
+  FOR EACH ROW
+  EXECUTE PROCEDURE create_geom();
+
+SELECT
+  ST_SetSRID(ST_MakePoint(gps.longitude, gps.latitude), 4326)
+FROM gps
+LIMIT 10;

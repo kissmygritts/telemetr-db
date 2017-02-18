@@ -1,41 +1,30 @@
-CREATE OR REPLACE FUNCTION parse_captures()
+CREATE OR REPLACE FUNCTION animals_to_deployments()
 RETURNS trigger AS
 $BODY$
 BEGIN
-  -- insert new capture into animal
-  INSERT INTO animals (
-    perm_id,
-    sex,
-    age,
-    species,
-    notes
-  )
-  SELECT
-    NEW.perm_id,
-    NEW.sex,
-    NEW.age,
-    NEW.species,
-    NEW.notes
-  FROM captures
-  WHERE perm_id = NEW.perm_id;
 
-  -- insert new deployment
   INSERT INTO deployments (
     animal_id,
     device_id,
-    inservice
+    inservice,
+    outservice
   )
   SELECT
-    animals.id AS animal_id,
+    NEW.id AS animal_id,
     devices.id AS device_id,
-    captures.cap_date AS inservice
-  FROM (captures
-    INNER JOIN animals ON captures.perm_id = animals.perm_id)
-    INNER JOIN devices ON captures.serial_num = devices.serial_num
-  WHERE captures.perm_id = NEW.perm_id;
+    NEW.cap_date AS inservice,
+    NEW.fate_date AS outservice
+  FROM animals
+    INNER JOIN devices ON NEW.serial_num = devices.serial_num;
 
   RETURN NULL;
 END;
 $BODY$
 LANGUAGE plpgsql VOLATILE
 COST 100;
+
+CREATE TRIGGER animals_to_deployments
+  AFTER INSERT
+  ON animals
+  FOR EACH ROW
+  EXECUTE PROCEDURE animals_to_deployments();
