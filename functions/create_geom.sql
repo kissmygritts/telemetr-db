@@ -18,8 +18,11 @@ COST 100;
 
 COMMENT ON FUNCTION create_geom() IS 'Creates a geometry field with latlong SRID = 4326';
 
+-- drop trigger
+DROP TRIGGER create_geom ON relocations;
+
 CREATE TRIGGER create_geom
-  AFTER INSERT
+  BEFORE INSERT
   ON relocations
   FOR EACH ROW
   EXECUTE PROCEDURE create_geom();

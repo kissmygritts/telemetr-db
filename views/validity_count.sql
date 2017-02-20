@@ -1,4 +1,7 @@
-CREATE VIEW relocations_validity_count AS
+/*
+shows the count and validity code and description for the relocations for each animal.
+*/
+CREATE VIEW relocs_validity AS
 SELECT
   animals.perm_id,
   validity_codes.code,
@@ -13,3 +16,5 @@ GROUP BY
 ORDER BY
   animals.perm_id,
   validity_codes.code;
+
+COMMENT ON VIEW relocs_validity IS 'shows the count and validity code and description for the relocations for each animal.';

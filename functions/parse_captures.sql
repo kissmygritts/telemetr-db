@@ -1,3 +1,7 @@
+/*
+Dynamically create a deployment for each animal entered into the database.
+The cap_date and fate_date are inserted to inservice and outservice date.
+*/
 CREATE OR REPLACE FUNCTION animals_to_deployments()
 RETURNS trigger AS
 $BODY$
@@ -23,6 +27,7 @@ $BODY$
 LANGUAGE plpgsql VOLATILE
 COST 100;
 
+-- apply function to animals trigger
 CREATE TRIGGER animals_to_deployments
   AFTER INSERT
   ON animals

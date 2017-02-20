@@ -1,3 +1,7 @@
+/*
+A query to show the the deployment of each animal with the
+perm_id and serial_num for that animal/deployment.
+*/
 CREATE VIEW animal_device AS
 SELECT
   animals.perm_id,
