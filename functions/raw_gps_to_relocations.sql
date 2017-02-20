@@ -1,5 +1,6 @@
 -- a function that will insert records into RELOCATIONS as long as
 -- locations fall between the deployment dates for that animal.
+--  NOTE: this is deprecated, raw_gps table is changed to gps and this function is gps_to_relocations
 
 CREATE OR REPLACE FUNCTION raw_gps_to_relocations()
 RETURNS trigger AS
