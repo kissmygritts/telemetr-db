@@ -1,8 +1,7 @@
 /*
-A query to show the the deployment of each animal with the
-perm_id and serial_num for that animal/deployment.
+A query that shows all of the active deployments.
 */
-CREATE VIEW animal_device AS
+CREATE VIEW active_deployments AS 
 SELECT
   animals.perm_id,
   animals.species,
@@ -17,3 +16,5 @@ SELECT
 FROM (deployments
   INNER JOIN animals ON deployments.animal_id = animals.id)
   INNER JOIN devices ON deployments.device_id = devices.id
+WHERE deployments.outservice IS NULL
+ORDER BY deployments.inservice DESC;
