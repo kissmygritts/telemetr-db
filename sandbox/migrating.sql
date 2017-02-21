@@ -22,9 +22,10 @@ INSERT INTO animals (
   fate_date
 )
 VALUES
-  ('910', '2012/01/12', 'F', 'A', 'MULD', '030681', 'no collar', '2013/09/15'); -- outservice: '2013/09/15'
+  ('910', '2012/01/12', 'F', 'A', 'MULD', '030681', 'no collar', '2013/09/15'),
+  ('925', '2012/01/13', 'F', 'A', 'MULD', '030682', 'no collar', '2013/01/10');
 
--- test animal without first adding the device
+-- testing with an animal that has multiple deployments
 INSERT INTO animals (
   perm_id,
   cap_date,
@@ -36,17 +37,6 @@ INSERT INTO animals (
   fate_date
 )
 VALUES
-  ('925', '2012/01/13', 'F', 'A', 'MULD', '030682', 'no collar', '2013/01/10'); -- outservice: '2013/01/10'
-
-
-
-
-UPDATE deployments t
-SET outservice = '2013/09/15'
-FROM devices
-WHERE t.device_id = devices.id AND devices.serial_num = '030681';
-
-UPDATE deployments t
-SET outservice = '2013/01/10'
-FROM devices
-WHERE t.device_id = devices.id AND devices.serial_num = '030682';
+  ('1596', '2013-01-06', 'F', 'A', 'MULD', '031812', 'new collar', '2015-01-23'),
+  ('1596', '2015-01-23', 'F', 'A', 'MULD', '030750', 'new collar', '2016-01-22'),
+  ('1596', '2016-01-22', 'F', 'A', 'MULD', '40729', null, null);

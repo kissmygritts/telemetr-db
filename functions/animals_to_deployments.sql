@@ -19,9 +19,11 @@ BEGIN
     NEW.cap_date AS inservice,
     NEW.fate_date AS outservice
   FROM animals
-    INNER JOIN devices ON NEW.serial_num = devices.serial_num;
+    INNER JOIN devices ON animals.serial_num = devices.serial_num
+  WHERE animals.id = NEW.id;
 
   RETURN NULL;
+
 END;
 $BODY$
 LANGUAGE plpgsql VOLATILE
