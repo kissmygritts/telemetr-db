@@ -15,6 +15,7 @@ CREATE TABLE gps (
   n_sats integer,
   fixtype varchar(10),
   gps_volts real,
+  vhf_volts real,
   created_at timestamp with time zone DEFAULT now(),
   updated_at timestamp with time zone DEFAULT now()
 );

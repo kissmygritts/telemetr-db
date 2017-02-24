@@ -20,3 +20,6 @@ CREATE TABLE relocations (
 );
 
 COMMENT ON TABLE relocations IS 'GPS data that has been checked agains inservice and outservice dates and includes the animal_id.';
+
+CREATE INDEX acq_time_lcl_idx
+ON relocations(acq_time_lcl);

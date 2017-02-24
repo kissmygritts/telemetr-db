@@ -6,6 +6,8 @@ CREATE TABLE animals (
   cap_date date,
   sex varchar(8),
   age varchar(10),
+  study_id integer REFERENCES lkp_study(id),
+  mgmt_area integer,
   fate varchar,
   fate_date date,
   notes varchar,
@@ -17,15 +19,8 @@ CREATE TABLE animals (
 CREATE INDEX perm_id_idx
 ON animals (perm_id);
 
-COMMENT ON TABLE animals IS 'All the animals that are captured and have a telemetry device deployed on them. This list should be updated when an animal dies or the collar is removed. This is the fate and fate_date';
-
--- forgot to add this constraint,
-ALTER TABLE animals
-  ADD CONSTRAINT serial_num_fk FOREIGN KEY (serial_num) REFERENCES devices(serial_num);
-
--- decided to add this column after creation, this is just a note
-ALTER TABLE animals
-  ADD COLUMN attributes jsonb;
+COMMENT ON TABLE animals IS
+'All the animals that are captured and have a telemetry device deployed on them. This list should be updated when an animal dies or the collar is removed. This is the fate and fate_date';
 
 -- TODO: if an animal is deleted then it's deployment needs to be deleted, so does any relocation data from relocations.
 -- QUESTION: what about raw gps data? Why would an animal be deleted after data is entered? Is it a reasonable expectation that the gps data should be deleted as well?

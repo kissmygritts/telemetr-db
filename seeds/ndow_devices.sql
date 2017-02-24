@@ -5,7 +5,7 @@ COPY devices (
   frequency,
   vendor,
   device_type,
-  model,
+  vhf_lot,
   mfg_date
 )
 FROM '/Users/mitchellgritts/Documents/telemetr/telemetr-data/devices.csv' WITH (FORMAT csv, DELIMITER ',', HEADER true);
