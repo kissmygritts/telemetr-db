@@ -11,4 +11,5 @@ CREATE TABLE devices (
   updated_at timestamp with time zone DEFAULT now()
 );
 
-COMMENT ON TABLE devices IS 'This table is a list of all the telemetry devices owned by the agency.';
+COMMENT ON TABLE devices IS
+'This table is a list of all the telemetry devices owned by the agency.';

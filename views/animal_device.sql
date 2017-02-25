@@ -16,4 +16,4 @@ SELECT
   deployments.id AS deployment_id
 FROM (deployments
   INNER JOIN animals ON deployments.animal_id = animals.id)
-  INNER JOIN devices ON deployments.device_id = devices.id
+  INNER JOIN devices ON deployments.device_id = devices.id;
