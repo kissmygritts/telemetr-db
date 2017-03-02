@@ -26,3 +26,11 @@ COMMENT ON TABLE animals IS
 -- QUESTION: what about raw gps data? Why would an animal be deleted after data is entered? Is it a reasonable expectation that the gps data should be deleted as well?
 -- QUESTION: As currently implemented this creates a one-to-one relationship with deployments. Every time an animal is recaptured and a new collar is put on that animal it the fate_date must be updated from the original record and the new one entered. I'm treating animals as a captures table. However, it works, and I need to move on.
 -- TODO: figure out one-to-many captures-animals-deployments work flow.
+
+
+-- below is due to forgetting some fields, etc
+ALTER TABLE animals
+ADD COLUMN study_id integer REFERENCES lkp_study(id);
+
+ALTER TABLE animals
+ADD COLUMN mgmt_area integer;

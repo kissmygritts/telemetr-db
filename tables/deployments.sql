@@ -1,6 +1,6 @@
 CREATE TABLE deployments (
   id serial PRIMARY KEY,
-  animal_id integer REFERENCES animals(id),
+  animal_id integer REFERENCES animals(id) ON DELETE CASCADE,
   device_id integer REFERENCES devices(id),
   inservice date,
   outservice date,
