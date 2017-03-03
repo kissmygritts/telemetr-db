@@ -1,13 +1,12 @@
 CREATE TABLE animals (
   id serial PRIMARY KEY,
   perm_id varchar(20),
-  species varchar(4),
+  species_id integer REFERENCES species(id)
   serial_num varchar(50) REFERENCES devices(serial_num),
   cap_date date,
   sex varchar(8),
   age varchar(10),
-  study_id integer REFERENCES lkp_study(id),
-  mgmt_area integer,
+  study_id integer REFERENCES studies(id),
   fate varchar,
   fate_date date,
   notes varchar,

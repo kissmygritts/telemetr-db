@@ -1,4 +1,4 @@
-CREATE TABLE lkp_study (
+CREATE TABLE studies (
   id serial PRIMARY KEY,
   study_name varchar(100),
   attributes jsonb,
@@ -6,11 +6,11 @@ CREATE TABLE lkp_study (
   updated_at timestamp with time zone DEFAULT now()
 );
 
-COMMENT ON TABLE lkp_study IS
+COMMENT ON TABLE studies IS
 'List of all the studies for collar deployments';
 
 -- seed the lkp_study table
-INSERT INTO lkp_study (study_name)
+INSERT INTO studies (study_name)
 VALUES
   ('Ruby Mtn'),
   ('Simpson Park'),
