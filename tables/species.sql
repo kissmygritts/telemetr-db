@@ -30,3 +30,13 @@ VALUES
 ('pronghorn antelope', 'PRGN', 'Antilocapra', 'americana', ''),
 ('mountain lion', 'MTLI', 'Puma', 'concolor', ''),
 ('American black bear', 'BLBR', 'Ursus', 'americanus', '');
+
+-- adding species ID to the animals table
+ALTER TABLE animals
+ADD COLUMN species_id integer REFERENCES species(id);
+
+-- updating animals with the species id
+UPDATE animals
+SET species_id = species.id
+FROM species
+WHERE animals.species = species.species_code;
