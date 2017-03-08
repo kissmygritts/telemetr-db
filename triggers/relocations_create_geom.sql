@@ -1,5 +1,0 @@
-CREATE TRIGGER add_geom
-BEFORE INSERT
-ON relocations
-FOR EACH ROW
-EXECUTE PROCEDURE create_geom();
