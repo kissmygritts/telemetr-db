@@ -43,3 +43,15 @@ CREATE TRIGGER update_timestamp
   ON relocations
   FOR EACH ROW
   EXECUTE PROCEDURE updated_at();
+
+CREATE TRIGGER update_timestamp
+  BEFORE UPDATE
+  ON species
+  FOR EACH ROW
+  EXECUTE PROCEDURE updated_at();
+
+CREATE TRIGGER update_timestamp
+  BEFORE UPDATE
+  ON studies
+  FOR EACH ROW
+  EXECUTE PROCEDURE updated_at();
