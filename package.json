@@ -1,0 +1,32 @@
+{
+  "name": "telemetr-db",
+  "version": "0.1.0",
+  "description": "schema and generator for telemetr database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wiesr/telemetr-db.git"
+  },
+  "keywords": [
+    "telelmetr",
+    "ecology"
+  ],
+  "author": "Mitchell Gritts",
+  "license": "ISC",
+  "bin": {
+    "snippet": "./index.js"
+  },
+  "bugs": {
+    "url": "https://github.com/wiesr/telemetr-db/issues"
+  },
+  "homepage": "https://github.com/wiesr/telemetr-db#readme",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "lodash": "^4.17.4",
+    "minimist": "^1.2.0",
+    "pg-promise": "^5.6.3"
+  }
+}
