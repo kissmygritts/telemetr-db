@@ -16,9 +16,7 @@
   ],
   "author": "Mitchell Gritts",
   "license": "ISC",
-  "bin": {
-    "snippet": "./index.js"
-  },
+  "bin": "./index.js",
   "bugs": {
     "url": "https://github.com/wiesr/telemetr-db/issues"
   },
