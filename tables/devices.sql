@@ -5,6 +5,7 @@ CREATE TABLE devices (
   vendor varchar(50),
   model varchar(75),
   device_type varchar(50),
+  network varchar(50),
   mfg_date date,
   vhf_lot varchar(50),
   created_at timestamp with time zone DEFAULT now(),
