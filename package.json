@@ -1,6 +1,6 @@
 {
   "name": "telemetr-db",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "schema and generator for telemetr database",
   "main": "index.js",
   "scripts": {
