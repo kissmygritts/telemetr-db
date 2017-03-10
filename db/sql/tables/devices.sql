@@ -8,9 +8,10 @@ CREATE TABLE devices (
   network varchar(50),
   mfg_date date,
   vhf_lot varchar(50),
+  attributes jsonb,
   created_at timestamp with time zone DEFAULT now(),
   updated_at timestamp with time zone DEFAULT now()
 );
 
 COMMENT ON TABLE devices IS
-'This table is a list of all the telemetry devices owned by the agency.';
+'This table is a list of all the owned telemetr devices.';
